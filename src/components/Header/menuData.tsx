@@ -24,6 +24,12 @@ const menuData: Menu[] = [
         path: "/afghan-date-converter",
         newTab: false,
       },
+      {
+        id: 42,
+        title: "Sales Tax Calculator",
+        path: "/sales-tax-calculator",
+        newTab: false,
+      },
     ],
   },
   {
