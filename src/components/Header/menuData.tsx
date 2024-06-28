@@ -25,9 +25,15 @@ const menuData: Menu[] = [
         newTab: false,
       },
       {
-        id: 42,
+        id: 43,
         title: "Sales Tax Calculator",
         path: "/sales-tax-calculator",
+        newTab: false,
+      },
+      {
+        id: 44,
+        title: "Age Calculator",
+        path: "/age-calculator",
         newTab: false,
       },
     ],
