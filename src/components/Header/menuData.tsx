@@ -8,38 +8,20 @@ const menuData: Menu[] = [
     newTab: false,
   },
   {
-    id: 2,
-    title: "About",
-    path: "/about",
-    newTab: false,
-  },
-  {
-    id: 33,
-    title: "Blog",
-    path: "/blog",
-    newTab: false,
-  },
-  {
-    id: 3,
-    title: "Support",
-    path: "/contact",
-    newTab: false,
-  },
-  {
     id: 4,
-    title: "Pages",
+    title: "Calculators",
     newTab: false,
     submenu: [
       {
         id: 41,
-        title: "About Page",
-        path: "/about",
+        title: "Afghan Tax Calculator",
+        path: "/afghan-tax-calculator",
         newTab: false,
       },
       {
         id: 42,
-        title: "Contact Page",
-        path: "/contact",
+        title: "Afghan Date Converter",
+        path: "/afghan-date-converter",
         newTab: false,
       },
       {
@@ -80,5 +62,23 @@ const menuData: Menu[] = [
       },
     ],
   },
+  {
+    id: 2,
+    title: "Tools",
+    path: "/tools",
+    newTab: false,
+  },
+  {
+    id: 33,
+    title: "Blog",
+    path: "/blog",
+    newTab: false,
+  },
+  {
+    id: 3,
+    title: "Support",
+    path: "/contact",
+    newTab: false,
+  }
 ];
 export default menuData;
