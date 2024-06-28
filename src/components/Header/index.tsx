@@ -64,7 +64,7 @@ const Header = () => {
                   className="w-full dark:hidden"
                 />
                 <Image
-                  src="/images/logo/calc-logo.png"
+                  src="/images/logo/afg-calc-white.png"
                   alt="logo"
                   width={140}
                   height={30}
