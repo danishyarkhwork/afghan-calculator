@@ -15,25 +15,29 @@ const Hero = () => {
                   Welcome to Afghan Calculators
                 </h1>
                 <p className="mb-12 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                Afghan Calculators offers a suite of powerful, easy-to-use tools designed to address a variety of mathematical and technical needs. From basic calculations to complex problem-solving, our calculators are built to deliver accurate results efficiently.
+                  Afghan Calculators offers a suite of powerful, easy-to-use tools designed to address a variety of mathematical and technical needs. From basic calculations to complex problem-solving, our calculators are built to deliver accurate results efficiently.
                 </p>
-                <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
-                  <Link
-                    href="https://nextjstemplates.com/templates/saas-starter-startup"
-                    className="rounded-sm bg-primary px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
-                  >
-                    🔥 Get Pro
-                  </Link>
-                  <Link
-                    href="https://github.com/NextJSTemplates/startup-nextjs"
-                    className="inline-block rounded-sm bg-black px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-black/90 dark:bg-white/10 dark:text-white dark:hover:bg-white/5"
-                  >
-                    Star on GitHub
-                  </Link>
-                </div>
               </div>
             </div>
           </div>
+        </div>
+        <div className="flex justify-center mt-8">
+          <Link href="#toolsSection">
+            <svg
+              className="w-10 h-10 animate-bounce text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-500 transition duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </Link>
         </div>
         <div className="absolute right-0 top-0 z-[-1] opacity-30 lg:opacity-100">
           <svg
