@@ -8,6 +8,7 @@ import Hero from "@/components/Hero";
 import OurToolsSection from "@/components/OurToolsSection";
 import { Metadata } from "next";
 
+
 export const metadata: Metadata = {
   title: "Afghan Calculator",
   description: "This is Home Afghan Calculator",
