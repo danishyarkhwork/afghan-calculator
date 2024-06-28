@@ -1,5 +1,5 @@
 const ourToolsSectionData = [
-  { id: 1, emoji: "🛠️", title: "Tool One", description: "Description for tool one.", link: "#" },
+  { id: 1, emoji: "📱", title: "Afghan Tax Calculator", description: "Calculate all your taxes here.", link: "/afghan-tax-calculator" },
   { id: 2, emoji: "🔧", title: "Tool Two", description: "Description for tool two.", link: "#" },
   { id: 3, emoji: "⚙️", title: "Tool Three", description: "Description for tool three.", link: "#" },
   { id: 4, emoji: "🔨", title: "Tool Four", description: "Description for tool four.", link: "#" },

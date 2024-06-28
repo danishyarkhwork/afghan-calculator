@@ -1,0 +1,6 @@
+/* Custom styles for react-tabs */
+.react-tabs__tab--selected {
+  border-bottom-width: 4px;
+  color: #3b82f6; /* Tailwind blue-500 */
+  font-weight: bold;
+}
