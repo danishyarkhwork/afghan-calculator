@@ -26,9 +26,8 @@ const Footer = () => {
                     height={30}
                   />
                 </Link>
-                <p className="mb-9 text-base leading-relaxed text-body-color dark:text-body-color-dark">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer lobortis.
+                <p className="mb-6 text-base leading-relaxed text-body-color dark:text-body-color-dark">
+                Afghan Calculators offers a suite of powerful, easy-to-use tools designed to address a variety of mathematical and technical needs
                 </p>
                 <div className="flex items-center">
                   <a
@@ -112,31 +111,31 @@ const Footer = () => {
             <div className="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-2/12 xl:w-2/12">
               <div className="mb-12 lg:mb-16">
                 <h2 className="mb-10 text-xl font-bold text-black dark:text-white">
-                  Useful Links
+                  Top Calculators
                 </h2>
                 <ul>
                   <li>
                     <Link
-                      href="/blog"
+                      href="/afghan-tax-calculator"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
-                      Blog
+                      Afghan Tax Calculator
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="/"
+                      href="/afghan-date-converter"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
-                      Pricing
+                      Afghan Date Converter
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="/about"
+                      href="/afghan-age-calculator"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
-                      About
+                      Afghan Age Calculator
                     </Link>
                   </li>
                 </ul>
@@ -146,20 +145,20 @@ const Footer = () => {
             <div className="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-2/12 xl:w-2/12">
               <div className="mb-12 lg:mb-16">
                 <h2 className="mb-10 text-xl font-bold text-black dark:text-white">
-                  Terms
+                  Useful Page
                 </h2>
                 <ul>
                   <li>
                     <Link
-                      href="/"
+                      href="/about"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
-                      TOS
+                      About Us
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="/"
+                      href="/privacy-policy"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
                       Privacy Policy
@@ -167,10 +166,10 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href="/"
+                      href="/terms-conditions"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
-                      Refund Policy
+                      Terms & Conditions
                     </Link>
                   </li>
                 </ul>
@@ -188,15 +187,15 @@ const Footer = () => {
                       href="/contact"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
-                      Open Support Ticket
+                      Suggestion
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="/"
+                      href="/faqs"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
-                      Terms of Use
+                      FAQs
                     </Link>
                   </li>
                   <li>
@@ -204,7 +203,7 @@ const Footer = () => {
                       href="/about"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
-                      About
+                      Contact Us
                     </Link>
                   </li>
                 </ul>
