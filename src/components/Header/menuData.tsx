@@ -15,7 +15,7 @@ const menuData: Menu[] = [
       {
         id: 41,
         title: "Afghan Tax Calculator",
-        path: "/afghan-tax-calculator",
+        path: "/afghan-tax-calculators",
         newTab: false,
       },
       {
