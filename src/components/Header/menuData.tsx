@@ -46,7 +46,7 @@ const menuData: Menu[] = [
       {
         id: 81,
         title: "Afghan AI Emoji Generator",
-        path: "/afghan-ai-emoji-generator",
+        path: "/afghan-emoji-generator",
         newTab: false,
       },
     ],
