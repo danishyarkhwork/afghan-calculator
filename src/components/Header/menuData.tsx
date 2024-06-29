@@ -45,6 +45,12 @@ const menuData: Menu[] = [
     submenu: [
       {
         id: 81,
+        title: "Free Typing Tool",
+        path: "/afghan-typing-tool",
+        newTab: false,
+      },
+      {
+        id: 82,
         title: "Afghan AI Emoji Generator",
         path: "/afghan-emoji-generator",
         newTab: false,
