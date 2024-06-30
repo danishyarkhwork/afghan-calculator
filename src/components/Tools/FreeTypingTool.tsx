@@ -1,74 +1,95 @@
 "use client";
 
-// TypingTestTool component
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { faker } from '@faker-js/faker';
 
-const TypingTestTool: React.FC = () => {
-    const [text, setText] = useState<string>(''); // Predefined text for typing test
-    const [userInput, setUserInput] = useState<string>('');
-    const [timer, setTimer] = useState<number>(0);
-    const [startTime, setStartTime] = useState<number | null>(null);
-    const [wpm, setWpm] = useState<number>(0);
+const generateRandomWords = (num: number) => {
+    return Array.from({ length: num }, () => faker.word.sample()).join(' ');
+};
 
-    const inputRef = useRef<HTMLInputElement>(null);
+const AdvancedTypingTool: React.FC = () => {
+    const [text, setText] = useState(generateRandomWords(200));
+    const [input, setInput] = useState('');
+    const [isTyping, setIsTyping] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(60);
+    const [wpm, setWpm] = useState<number | null>(null);
+    const [accuracy, setAccuracy] = useState<number | null>(null);
+    const [typedWords, setTypedWords] = useState<string[]>([]);
+    const timerRef = useRef<NodeJS.Timeout | null>(null);
+    const textRef = useRef<HTMLDivElement>(null);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { value } = e.target;
-        setUserInput(value);
-
-        // Start the timer when the user starts typing
-        if (!startTime) {
-            setStartTime(Date.now());
-            const interval = setInterval(() => {
-                setTimer(Math.floor((Date.now() - startTime!) / 1000));
+    useEffect(() => {
+        if (isTyping && timeLeft > 0) {
+            timerRef.current = setTimeout(() => {
+                setTimeLeft(timeLeft - 1);
             }, 1000);
-
-            return () => clearInterval(interval);
+        } else if (timeLeft === 0) {
+            calculateResults();
+            setIsTyping(false);
+            if (timerRef.current) clearTimeout(timerRef.current);
         }
+        return () => {
+            if (timerRef.current) clearTimeout(timerRef.current);
+        };
+    }, [isTyping, timeLeft]);
 
-        // Calculate WPM
-        const words = value.trim().split(/\s+/).length;
-        const minutes = timer / 60;
-        const wpmCalc = Math.floor(words / minutes);
-        setWpm(wpmCalc);
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!isTyping) setIsTyping(true);
+        const value = e.target.value;
+        if (value.endsWith(' ')) {
+            setTypedWords([...typedWords, value.trim()]);
+            setInput('');
+            highlightNextWord();
+        } else {
+            setInput(value);
+        }
     };
 
-    const resetTest = () => {
-        setText('');
-        setUserInput('');
-        setTimer(0);
-        setStartTime(null);
-        setWpm(0);
-        if (inputRef.current) {
-            inputRef.current.focus();
+    const highlightNextWord = () => {
+        if (textRef.current) {
+            const words = textRef.current.querySelectorAll('span');
+            words.forEach((word, index) => {
+                if (index === typedWords.length) {
+                    word.classList.add('highlight');
+                } else {
+                    word.classList.remove('highlight');
+                }
+            });
         }
+    };
+
+    const calculateResults = () => {
+        const wordsTyped = typedWords.length;
+        setWpm(wordsTyped);
+        const correctWords = typedWords.filter((word, index) => word === text.split(' ')[index]).length;
+        setAccuracy((correctWords / wordsTyped) * 100);
     };
 
     return (
-        <div className="p-4 border border-gray-300 rounded-md shadow-md">
-            <h2 className="text-lg font-semibold mb-2">Typing Test Tool</h2>
-            <div className="mb-4">
-                <textarea
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                    rows={4}
-                    placeholder="Start typing here..."
-                    value={userInput}
-                    onChange={handleInputChange}
-                    ref={inputRef}
-                />
+        <div className="p-4 max-w-3xl mx-auto bg-white rounded-xl shadow-md space-y-4">
+            <div id="words" className="text-lg font-semibold whitespace-pre-wrap" ref={textRef}>
+                {text.split(' ').map((word, index) => (
+                    <span key={index} wordnr={index} className={index === 0 ? 'highlight' : ''}>
+                        {word}{' '}
+                    </span>
+                ))}
             </div>
-            <div className="flex justify-between mb-4">
-                <div>Time: {timer} seconds</div>
-                <div>WPM: {wpm}</div>
+            <input
+                type="text"
+                value={input}
+                onChange={handleChange}
+                className="w-full p-2 border border-gray-300 rounded"
+                placeholder="Start typing here..."
+                disabled={timeLeft === 0}
+                autoFocus
+            />
+            <div className="flex justify-between items-center">
+                <div>Time Left: {timeLeft}s</div>
+                {wpm !== null && <div>WPM: {wpm}</div>}
+                {accuracy !== null && <div>Accuracy: {accuracy.toFixed(2)}%</div>}
             </div>
-            <button
-                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md mb-4"
-                onClick={resetTest}
-            >
-                Reset
-            </button>
         </div>
     );
 };
 
-export default TypingTestTool;
+export default AdvancedTypingTool;
