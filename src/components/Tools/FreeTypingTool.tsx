@@ -3,22 +3,34 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const easyWords = [
-  'the', 'and', 'of', 'to', 'in', 'a', 'is', 'that', 'for', 'it',
-  'was', 'as', 'with', 'on', 'be', 'by', 'this', 'at', 'have', 'or',
-  'from', 'but', 'not', 'are', 'we', 'an', 'which', 'they', 'you',
-  'one', 'all', 'were', 'can', 'there', 'their', 'what', 'so', 'up',
-  'out', 'if', 'about', 'who', 'get', 'go', 'me', 'like', 'no', 'just',
-  'him', 'now', 'my', 'her', 'make', 'than', 'our', 'us', 'then', 'these',
-  'she', 'time', 'how', 'see', 'more', 'new', 'way', 'could', 'people',
-  'well', 'other', 'first', 'into', 'do', 'its', 'would', 'been', 'two',
-  'after', 'when', 'come', 'over', 'some', 'only', 'also', 'back', 'use',
-  'because', 'even', 'most', 'give', 'any', 'day', 'through', 'man',
-  'before', 'must', 'down', 'should', 'where', 'each', 'thing', 'same',
-  'year', 'too', 'said'
+  'cat', 'dog', 'book', 'house', 'car', 'tree', 'apple', 'happy', 'run', 'jump',
+  'play', 'walk', 'sun', 'moon', 'star', 'blue', 'red', 'green', 'yellow', 'big',
+  'small', 'fast', 'slow', 'hot', 'cold', 'new', 'old', 'good', 'bad', 'yes',
+  'no', 'and', 'or', 'but', 'if', 'the', 'is', 'in', 'on', 'it', 'to', 'he', 'she'
 ];
 
-const generateRandomWords = (num: number) => {
-  return Array.from({ length: num }, () => easyWords[Math.floor(Math.random() * easyWords.length)]);
+const mediumWords = [
+  'beautiful', 'quickly', 'understand', 'bicycle', 'mountain', 'kitchen', 'elephant',
+  'conversation', 'puzzle', 'garden', 'window', 'holiday', 'balloon', 'umbrella',
+  'yesterday', 'tomorrow', 'library', 'excited', 'adventure', 'enormous', 'delicious',
+  'whisper', 'thunder', 'river', 'ocean', 'sandwich', 'butterfly', 'treasure',
+  'important', 'remember', 'family', 'friend', 'happy', 'lucky', 'quiet', 'loud',
+  'perfect', 'wonderful', 'knowledge', 'curious'
+];
+
+const complexWords = [
+  'extraterrestrial', 'metamorphosis', 'quantum', 'psychology', 'philosophy', 'anthropology',
+  'astronomy', 'biochemistry', 'neuroscience', 'microbiology', 'paleontology',
+  'epistemology', 'sociolinguistics', 'hydrodynamics', 'thermodynamics', 'photosynthesis',
+  'electromagnetism', 'cybersecurity', 'cryptography', 'nanotechnology', 'biotechnology',
+  'astrobiology', 'astrophysics', 'geophysics', 'quantum mechanics', 'relativity',
+  'string theory', 'superconductivity', 'bioinformatics', 'biostatistics', 'neuropsychology',
+  'psychopharmacology', 'epidemiology', 'virology', 'immunology', 'pathophysiology',
+  'histopathology', 'psychopathology', 'parapsychology', 'metaphysics', 'hermeneutics'
+];
+
+const generateRandomWords = (num: number, wordList: string[]) => {
+  return Array.from({ length: num }, () => wordList[Math.floor(Math.random() * wordList.length)]);
 };
 
 const AdvancedTypingTool: React.FC = () => {
@@ -35,13 +47,14 @@ const AdvancedTypingTool: React.FC = () => {
   const [correctWords, setCorrectWords] = useState<number>(0);
   const [history, setHistory] = useState<{ wpm: number, accuracy: number }[]>([]);
   const [leaderboard, setLeaderboard] = useState<{ wpm: number, accuracy: number }[]>([]);
+  const [difficulty, setDifficulty] = useState('easy');
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const wordsPerPage = 20; // 10 words per line, 2 lines
 
   useEffect(() => {
-    setText(generateRandomWords(100)); // Generate 100 words for the test
-  }, []);
+    setText(generateRandomWords(100, getWordList(difficulty))); // Generate 100 words for the test
+  }, [difficulty]);
 
   useEffect(() => {
     if (isTyping && timeLeft > 0) {
@@ -113,7 +126,7 @@ const AdvancedTypingTool: React.FC = () => {
   };
 
   const handleRestart = () => {
-    setText(generateRandomWords(100)); // generate 100 words for longer text
+    setText(generateRandomWords(100, getWordList(difficulty))); // generate 100 words for longer text
     setInput('');
     setIsTyping(false);
     setTimeLeft(selectedTime);
@@ -131,6 +144,21 @@ const AdvancedTypingTool: React.FC = () => {
     setTimeLeft(time);
   };
 
+  const handleDifficultyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setDifficulty(e.target.value);
+  };
+
+  const getWordList = (difficulty: string) => {
+    switch (difficulty) {
+      case 'medium':
+        return mediumWords;
+      case 'complex':
+        return complexWords;
+      default:
+        return easyWords;
+    }
+  };
+
   useEffect(() => {
     highlightNextWord('');
   }, [typedWords, currentIndex]);
@@ -142,6 +170,11 @@ const AdvancedTypingTool: React.FC = () => {
           <option value={30}>30 seconds</option>
           <option value={60}>60 seconds</option>
           <option value={120}>120 seconds</option>
+        </select>
+        <select value={difficulty} onChange={handleDifficultyChange} className="p-2 border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-700 dark:text-white">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="complex">Complex</option>
         </select>
         <button onClick={handleRestart} className="p-2 bg-blue-500 text-white rounded">
           Restart
